@@ -20,13 +20,9 @@ function makeBoard() {
   // board = new Array(HEIGHT).fill(new Array(WIDTH).fill(null));
   
   for(let i = 0; i < HEIGHT; i++){
-    let boardRow = [];
-    for(let j = 0; j < WIDTH; j++){
-      boardRow.push(null);
-    }
+    let boardRow = new Array(WIDTH).fill(null);
     board.push(boardRow);
   }
-  // TODO: play with Array.fill
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
@@ -135,23 +131,25 @@ function checkForWin() {
 
     return cells.every(
       ([y, x]) =>
+        // check that piece is within constraints of board...
         y >= 0 &&
         y < HEIGHT &&
         x >= 0 &&
         x < WIDTH &&
+        // ... AND that it's owned by the current player
         board[y][x] === currPlayer
     );
   }
 
-  // TODO: read and understand this code. Add comments to help you.
-
+  // checks ENTIRE board at every cell if win condition is met
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {
+      // provides 4 adjacent coordinates in different directions for _win(cells) to check
       let horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
       let vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
       let diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
       let diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
-
+  
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
         return true;
       }

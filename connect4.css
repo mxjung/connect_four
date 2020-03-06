@@ -1,9 +1,14 @@
 /* game board table */
 
+#board {
+  position: relative;
+}
+
 #board td {
   width: 50px;
   height: 50px;
   border: solid 1px #666;
+  position: relative;
 }
 
 /* pieces are div within game table cells: draw as colored circles */
@@ -11,9 +16,24 @@
 .piece {
   /* TODO: make into circles */
   margin: 5px;
-  width: 80%;
-  height: 80%;
+  width: 40px;
+  height: 40px;
   border-radius: 100%;
+
+
+  animation-duration: .5s;
+  animation-name: slide-in;
+}
+
+@keyframes slide-in {
+  from {
+    top: -200px;
+    position: absolute;
+  }
+  to {
+    top: 0px;
+    position: relative;
+  }
 }
 
 /* TODO: make pieces red/blue,  depending on player 1/2 piece */
@@ -29,6 +49,7 @@
 
 #column-top td {
   border: dashed 1px lightgray;
+  position: relative;
 }
 
 #column-top td:hover {
