@@ -27,7 +27,7 @@
 
 @keyframes slide-in {
   from {
-    top: -200px;
+    top: -250px;
     position: absolute;
   }
   to {
