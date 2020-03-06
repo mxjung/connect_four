@@ -18,8 +18,8 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
 function makeBoard() {
   // old bad array creation that had memory sharing issues
   // board = new Array(HEIGHT).fill(new Array(WIDTH).fill(null));
-  
-  for(let i = 0; i < HEIGHT; i++){
+
+  for (let i = 0; i < HEIGHT; i++) {
     let boardRow = new Array(WIDTH).fill(null);
     board.push(boardRow);
   }
@@ -80,7 +80,6 @@ function placeInTable(y, x) {
 }
 
 /** endGame: announce game end */
-
 function endGame(msg) {
   alert(msg);
 }
@@ -106,14 +105,14 @@ function handleClick(evt) {
     return endGame(`Player ${currPlayer} won!`);
   }
 
-  // check for tie
- 
+  // check for tie - separated isTied to make code cleaner
   let isTied = board.every((array) => {
     return array.every((cell) => {
       return cell !== null;
     });
   });
-  if(isTied){
+
+  if (isTied) {
     return endGame(`The game tied!`);
   }
 
@@ -149,7 +148,7 @@ function checkForWin() {
       let vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
       let diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
       let diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
-  
+
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
         return true;
       }
